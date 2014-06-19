@@ -1,0 +1,11 @@
+{
+  "name": "html-home-audio",
+  "main": "server.js",
+  "dependencies": {
+    "express": "",
+    "body-parser": "",
+    "method-override": "",
+    "mongoose" : "",
+    "multer": ""
+  }
+}

@@ -8,6 +8,7 @@ var ArtistSchema = new mongoose.Schema({
     a_name: String,
     tag: String,
     songs : [{
+      s_number: Number,
       s_name: String,
       filename: String
     }]

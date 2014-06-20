@@ -4,11 +4,11 @@ module.exports = function(app) {
 
     app.post('/upload', function(req, res) {
         var songs = [];
-        console.log(req.files);
         for (var file in req.files) {
             if (req.files.hasOwnProperty(file)) {
                 var filename = req.files[file].originalname.split(".");
                 var song = {
+                    s_number: parseInt(req.files[file].fieldname),
                     s_name: filename[0],
                     filename: req.files[file].name
                 };

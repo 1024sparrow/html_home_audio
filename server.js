@@ -19,5 +19,8 @@ require('./routes/artist')(app);
 require('./routes/genre')(app);
 require('./routes/upload')(app);
 
+var populate_genres = require('./data/utility/pop_genres');
+populate_genres();
+
 app.listen(3000);
 console.log('App listening on 3000 and you can too!');

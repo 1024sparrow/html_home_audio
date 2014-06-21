@@ -2,6 +2,10 @@ var Artist = require('../data/models/artist');
 
 module.exports = function(app) {
 
+    app.get('/upload', function(req, res) {
+        //send list of genres to choose from
+    });
+
     app.post('/upload', function(req, res) {
         var songs = [];
         for (var file in req.files) {

@@ -1,0 +1,29 @@
+html, body {
+  padding: 0;
+  margin: 0; }
+
+#container {
+  background-color: #ffffff;
+  margin: 0 0; }
+
+#title-bar {
+  background-color: #177000;
+  height: 20%;
+  margin: 0 0; }
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  display: inline; }
+
+#title-bar ul {
+  margin: 0 0;
+  list-style: none;
+  float: right; }
+
+#title-bar ul li {
+  margin: 0 auto;
+  display: inline;
+  color: white;
+  border-radius: 5px; }

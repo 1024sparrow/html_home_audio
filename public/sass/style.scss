@@ -1,0 +1,39 @@
+$title-color: rgba( 23,112,  0,1);
+$primary-text: #ffffff;
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+#container {
+  background-color: #ffffff;
+  margin: 0 0;
+}
+
+#title-bar {
+  background-color: $title-color;
+  height: 20%;
+  margin: 0 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: $primary-text;
+  display: inline;
+}
+
+#title-bar ul {
+  margin: 0 0;
+  list-style: none;
+  float: right;
+}
+
+#title-bar ul li {
+  margin: 0 auto;
+  display: inline;
+  color: $primary-text;
+  border-radius: 5px;
+}
+

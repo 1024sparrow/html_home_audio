@@ -1,6 +1,7 @@
 html, body {
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  font-family: 'Open Sans', sans-serif; }
 
 #container {
   background-color: #ffffff;
@@ -8,14 +9,18 @@ html, body {
 
 #title-bar {
   background-color: #177000;
-  height: 20%;
+  height: 75px;
   margin: 0 0; }
 
 .logo {
   font-size: 24px;
   font-weight: bold;
   color: white;
-  display: inline; }
+  display: inline;
+  line-height: 75px;
+  vertical-align: middle;
+  padding-left: 37px;
+  text-shadow: #000 2px 1px; }
 
 #title-bar ul {
   margin: 0 0;
@@ -25,5 +30,23 @@ html, body {
 #title-bar ul li {
   margin: 0 auto;
   display: inline;
+  padding-right: 20px;
+  line-height: 75px;
+  vertical-align: middle; }
+
+#title-bar ul li a {
   color: white;
-  border-radius: 5px; }
+  font-weight: bold;
+  text-decoration: none; }
+
+#title-bar ul li a:hover {
+  color: #000; }
+
+#banner {
+  width: 50%;
+  margin: 50px auto;
+  text-align: center; }
+
+.welcome {
+  font-family: 'Dosis', sans-serif;
+  margin: 25px auto; }

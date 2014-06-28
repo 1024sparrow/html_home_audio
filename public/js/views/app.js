@@ -6,6 +6,8 @@ app.AppView = Backbone.View.extend({
 
     headerTmpl: renderTemplate('header', {}),
 
+    welcomeTmpl: renderTemplate('welcome', {}),
+
     events: {
         'click #artists': 'artistPage',
         'click #genres': 'genresPage',
@@ -16,12 +18,14 @@ app.AppView = Backbone.View.extend({
         console.log('initialize appview');
         console.log(this.headerTmpl);
         this.$header = this.$('#main-header');
+        this.$mainSection = this.$('#main-section');
         this.render();
     },
 
     render: function(){
         console.log(this.headerTmpl);
         this.$header.html(this.headerTmpl);
+        this.$mainSection.html(this.welcomeTmpl);
     },
 
     artistPage: function(){

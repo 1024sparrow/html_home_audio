@@ -1,9 +1,11 @@
 $title-color: rgba( 23,112,  0,1);
 $primary-text: #ffffff;
+$title-height: 75px;
 
 html, body {
   padding: 0;
   margin: 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #container {
@@ -13,7 +15,7 @@ html, body {
 
 #title-bar {
   background-color: $title-color;
-  height: 20%;
+  height: $title-height;
   margin: 0 0;
 }
 
@@ -22,6 +24,10 @@ html, body {
   font-weight: bold;
   color: $primary-text;
   display: inline;
+  line-height: $title-height;
+  vertical-align: middle;
+  padding-left: 37px;
+  text-shadow: #000 2px 1px;
 }
 
 #title-bar ul {
@@ -33,7 +39,29 @@ html, body {
 #title-bar ul li {
   margin: 0 auto;
   display: inline;
+  padding-right: 20px;
+  line-height: $title-height;
+  vertical-align: middle;
+}
+
+#title-bar ul li a {
   color: $primary-text;
-  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#title-bar ul li a:hover {
+  color: #000;
+}
+
+#banner {
+  width: 50%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.welcome {
+  font-family: 'Dosis', sans-serif;
+  margin: 25px auto;
 }
 

@@ -8,22 +8,21 @@ app.AppView = Backbone.View.extend({
 
     welcomeTmpl: renderTemplate('welcome', {}),
 
+    uploadTmpl: renderTemplate('upload', {}),
+
     events: {
         'click #artists': 'artistPage',
-        'click #genres': 'genresPage',
-        'click #upload': 'uploadPage'
+        'click #genres': 'genresPage'
     },
 
     initialize: function(){
-        console.log('initialize appview');
-        console.log(this.headerTmpl);
+        this.on('upload', this.uploadPage);
         this.$header = this.$('#main-header');
         this.$mainSection = this.$('#main-section');
         this.render();
     },
 
     render: function(){
-        console.log(this.headerTmpl);
         this.$header.html(this.headerTmpl);
         this.$mainSection.html(this.welcomeTmpl);
     },
@@ -37,7 +36,7 @@ app.AppView = Backbone.View.extend({
     },
 
     uploadPage: function(){
-        console.log('upload');
+        this.uploadView = new app.UploadView();
     }
 
 });

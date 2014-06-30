@@ -1,9 +1,20 @@
 var Artist = require('../data/models/artist');
+var Genre = require('../data/models/genre');
 
 module.exports = function(app) {
 
     app.get('/upload', function(req, res) {
         //send list of genres to choose from
+        var genre_list = [];
+        Genre.find({}, function(err, genres) {
+            if(err) {
+                console.log(err);
+            }
+            genres.forEach(function(genre) {
+                genre_list.push({name: genre.genre, _id: genre._id});
+            });
+            res.end(JSON.stringify({data: genre_list}));
+        });
     });
 
     app.post('/upload', function(req, res) {

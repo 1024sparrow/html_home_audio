@@ -1,0 +1,19 @@
+<div id="form-container">
+    <form enctype="multipart/form-data" action="/upload">
+        <p>Artist:</p>
+        <input type="text" name="name"/><br>
+        <p>Genre:</p>
+        <select name="genre">
+            {{#each genres}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select><br>
+        <p>Album:</p>
+        <input type="text" name="album"/><br>
+        <br>
+        <p>Track 1:</p>
+        <input type="file" name="1"/><br>
+        <p>Track 2:</p>
+        <input type="file" name="2"/><br>
+    </form>
+</div>

@@ -17,6 +17,7 @@ app.AppView = Backbone.View.extend({
 
     initialize: function(){
         this.on('upload', this.uploadPage);
+        this.on('main', this.mainPage);
         this.$header = this.$('#main-header');
         this.$mainSection = this.$('#main-section');
         this.render();
@@ -37,6 +38,10 @@ app.AppView = Backbone.View.extend({
 
     uploadPage: function(){
         this.uploadView = new app.UploadView();
+    },
+
+    mainPage: function(){
+        this.$mainSection.html(this.welcomeTmpl);
     }
 
 });

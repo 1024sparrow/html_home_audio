@@ -1,5 +1,5 @@
 <div id="form-container">
-    <form enctype="multipart/form-data" action="/upload">
+    <form enctype="multipart/form-data" action="/upload" method="post">
         <p>Artist:</p>
         <input type="text" name="name"/><br>
         <p>Genre:</p>
@@ -11,9 +11,17 @@
         <p>Album:</p>
         <input type="text" name="album"/><br>
         <br>
-        <p>Track 1:</p>
-        <input type="file" name="1"/><br>
-        <p>Track 2:</p>
-        <input type="file" name="2"/><br>
+        <input type="button" onclick="addFile()" value="Add Track"/>
+        <div id="files"></div>
+        <input type="submit" value="Upload"/>
     </form>
 </div>
+<script type="text/javascript">
+    var filesCount = 0;
+    function addFile() {
+        console.log('addFile');
+        filesCount++;
+        var file = '<p>Track ' + filesCount + ': </p><input type="file" name="' + filesCount + '"/>';
+        $('#files').append(file);
+    }
+</script>

@@ -6,7 +6,6 @@ app.GenreList = Backbone.Collection.extend({
     url: '/upload',
 
     parse: function(data) {
-        console.log(data.data);
         return data.data;
     }
 });

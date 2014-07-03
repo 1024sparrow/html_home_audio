@@ -3,9 +3,7 @@ var Artist =  require('../data/models/artist');
 module.exports = function(app) {
 
     app.get('/artists', function(req, res) {
-        var artist_list = {a: [], b: [], c: [], d: [], e: [], f: [], g: [], h: [], i: [],
-                            j: [], k: [], l: [], m: [], n: [], o: [], p: [], q: [], r:{},
-                            s: [], t: [], u: [], v: [], w: [], x: [], y: [], z: []};
+        var artist_list = [];
         Artist.find({}, function(err, artists) {
             if(err) {
                 console.log(err);
@@ -16,9 +14,8 @@ module.exports = function(app) {
                 else { return 0; }
             });
             artists.forEach(function(artist) {
-                var letter = artist.name.substring(0, 1).toLowerCase();
-                var record = {name: artist.name, tag: artist.tag};
-                artist_list[letter].push(record);
+                var record = {name: artist.name, tag: artist.tag, _id: artist._id};
+                artist_list.push(record);
             });
             res.end(JSON.stringify(artist_list));
         });
@@ -56,11 +53,6 @@ module.exports = function(app) {
                     var album = artist.albums[i];
                     if(album.tag == req.params.album) {
                         var record = {a_name: album.a_name, tag: album.tag, songs: []};
-                        album.songs.sort(function(value1, value2) {
-                            if(value1.s_number < value2.s_number) { return -1; }
-                            else if(value1.s_number > value2.s_number) { return 1; }
-                            else { return 0; }
-                        });
                         album.songs.forEach(function(song) {
                             record.songs.push({s_number: song.s_number, s_name: song.s_name, filename: song.filename});
                         });

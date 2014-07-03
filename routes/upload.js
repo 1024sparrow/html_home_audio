@@ -24,7 +24,7 @@ module.exports = function(app) {
                 var filename = req.files[file].originalname.split(".");
                 var song = {
                     s_number: parseInt(req.files[file].fieldname),
-                    s_name: filename[0],
+                    s_name: filename[0].split("-")[1],
                     filename: req.files[file].name
                 };
                 songs.push(song);

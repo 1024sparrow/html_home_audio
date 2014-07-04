@@ -18,6 +18,7 @@ app.AppView = Backbone.View.extend({
         this.on('main', this.mainPage);
         this.on('upload', this.uploadPage);
         this.on('artists', this.artistsPage);
+        this.on('albums', this.albumsPage);
         this.$header = this.$('#main-header');
         this.$mainSection = this.$('#main-section');
         this.render();
@@ -30,6 +31,11 @@ app.AppView = Backbone.View.extend({
 
     artistsPage: function(){
         this.main = new app.ArtistView();
+    },
+
+    albumsPage: function(artistName){
+        console.log(artistName);
+        this.main = new app.AlbumView({name: artistName});
     },
 
     genresPage: function(){

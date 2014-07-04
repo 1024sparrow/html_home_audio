@@ -30,7 +30,7 @@ module.exports = function(app) {
                 res.end("404");
             }
             else {
-                var record = {name: artist.name, genre: artist.genre, albums: []};
+                var record = {name: artist.name, tag: artist.tag, genre: artist.genre, albums: []};
                 artist.albums.forEach(function(album) {
                    var album_record = {a_name: album.a_name, tag: album.tag};
                     record.albums.push(album_record);

@@ -8,14 +8,8 @@ app.ArtistList = Backbone.Collection.extend({
     sorted: function() {
         return this.models.sort(function(value1, value2) {
             if(value1.name < value2.name) { return -1; }
-            if(value1.name > value2.name) { return 1; }
+            else if(value1.name > value2.name) { return 1; }
             else { return 0;}
-        });
-    },
-
-    initialize: function() {
-        this.on('add', function(artist) {
-           console.log(artist.get('name'));
         });
     }
 });

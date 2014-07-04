@@ -1,0 +1,7 @@
+<div id="albums-list">
+    <h1>{{artist}}</h1>
+    <h2>{{genre}}</h2>
+    {{#each albums}}
+    <div id="album"><a href="#/artists/{{../tag}}/{{this.tag}}">{{this.a_name}}</a></div>
+    {{/each}}
+</div>

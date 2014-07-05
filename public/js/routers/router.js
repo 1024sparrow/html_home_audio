@@ -5,7 +5,8 @@ var AppRouter = Backbone.Router.extend({
         '': 'mainPage',
         'upload': 'uploadForm',
         'artists': 'artistsPage',
-        'artists/:artist': 'albumsPage'
+        'artists/:artist': 'albumsPage',
+        'artists/:artist/:album': 'songsPage'
     },
 
     mainPage: function() {
@@ -21,10 +22,12 @@ var AppRouter = Backbone.Router.extend({
     },
 
     albumsPage: function(artist) {
-        console.log(artist);
         app.Application.trigger('albums', artist);
-    }
+    },
 
+    songsPage: function(artist, album) {
+        app.Application.trigger('songs', artist, album);
+    }
 });
 
 app.AppRouter = new AppRouter();

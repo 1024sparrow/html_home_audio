@@ -6,11 +6,7 @@ app.AlbumList = Backbone.Collection.extend({
     url: '',
 
     initialize: function(options) {
-        console.log(options.name);
         this.url = '/artists/' + options.name;
-        this.on('add', function(album) {
-            console.log(album.get('a_name'));
-        });
     },
 
     sorted: function() {

@@ -52,9 +52,9 @@ module.exports = function(app) {
                 for(var i=0; i < artist.albums.length; i++) {
                     var album = artist.albums[i];
                     if(album.tag == req.params.album) {
-                        var record = {a_name: album.a_name, tag: album.tag, songs: []};
+                        var record = {name: artist.name, tag: artist.tag, a_name: album.a_name, a_tag: album.tag, songs: []};
                         album.songs.forEach(function(song) {
-                            record.songs.push({s_number: song.s_number, s_name: song.s_name, filename: song.filename});
+                            record.songs.push({number: song.s_number, name: song.s_name, filename: song.filename});
                         });
                         res.end(JSON.stringify(record));
                         break;

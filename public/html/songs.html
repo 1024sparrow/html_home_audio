@@ -1,0 +1,13 @@
+<div id="audio-player">
+    <h1>Audio Player</h1>
+    <hr/>
+</div>
+<div id="song-list">
+    <a href="#artists/{{tag}}"><h1>{{artist}}</h1></a>
+    <h2>{{album}}:</h2>
+    <ul id="songs">
+        {{#each songs}}
+        <li data-name="{{name}}" data-number="{{number}}" data-filename="{{filename}}">{{name}}</li>
+        {{/each}}
+    </ul>
+</div>

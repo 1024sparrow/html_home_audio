@@ -8,7 +8,6 @@ app.AlbumView = Backbone.View.extend({
     },
 
     initialize: function(options) {
-        console.log(options.name);
         this.collection = new app.AlbumList(options);
         var self = this;
         this.collection.fetch({success: function(collection, response, options) {

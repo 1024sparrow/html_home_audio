@@ -44,9 +44,32 @@ html, body {
 
 #banner {
   width: 50%;
-  margin: 50px auto;
+  margin: 0 auto;
   text-align: center; }
 
 .welcome {
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Dosis', sans-serif; }
+
+#main-section {
+  width: 75%;
+  margin: 50px auto; }
+
+#audio-controls ul {
+  list-style: none; }
+
+#audio-controls ul li {
+  display: inline; }
+
+#song-list {
   margin: 25px auto; }
+
+#song-list ul {
+  list-style: none; }
+
+#song-list a {
+  text-decoration: none;
+  color: #000; }
+
+#song-list a:visited {
+  text-decoration: none;
+  color: #000; }

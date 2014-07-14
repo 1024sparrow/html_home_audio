@@ -23,5 +23,10 @@ app.SongList = Backbone.Collection.extend({
         this.album = data.a_name;
         this.a_tag = data.a_tag;
         return data.songs;
+    },
+
+    getSongInfo: function(songNumber) {
+        var song = this.findWhere({number: songNumber});
+        return {name: song.get('name'), filename: song.get('filename')};
     }
 });

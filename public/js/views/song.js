@@ -15,6 +15,7 @@ app.SongView = Backbone.View.extend({
 
     initialize: function(options) {
         this.currentSong = 1;
+        this.firstPlay = true;
         this.collection = new app.SongList(options);
         var self = this;
         this.collection.fetch({success: function(collection, response, options) {
@@ -29,23 +30,68 @@ app.SongView = Backbone.View.extend({
                 songs: songs
             });
             var track = collection.getSongInfo(self.currentSong);
-            self.setSongSource(track.filename);
+            self.setSongSource(track.name, track.filename);
+            self.audio = document.getElementById('audio');
+            self.audio.addEventListener('ended', self.nextSong); // change rendering and move this out of the fetch
         }});
     },
 
     previousSong: function() {
-        console.log("previous");
+        if(this.currentSong > 1) {
+            this.currentSong--;
+            if(this.audio.paused) {
+                var track = this.collection.getSongInfo(this.currentSong);
+                this.setSongSource(track.name, track.filename);
+            }
+            else {
+                this.audio.pause();
+                var track = this.collection.getSongInfo(this.currentSong);
+                this.setSongSource(track.name, track.filename);
+                this.audio.play();
+            }
+        }
+        else {
+            // seek back to start of the song
+        }
     },
 
     nextSong: function() {
-        console.log("next");
+        if(this.currentSong == this.collection.models.length) {
+            this.currentSong = 1;
+            this.audio.pause();
+        }
+        else { this.currentSong++; }
+        if(this.audio.paused) {
+            var track = this.collection.getSongInfo(this.currentSong);
+            this.setSongSource(track.name, track.filename);
+        }
+        else {
+            this.audio.pause();
+            var track = this.collection.getSongInfo(this.currentSong);
+            this.setSongSource(track.name, track.filename);
+            this.audio.play();
+        }
     },
 
     playPause: function() {
-        console.log("play pause");
+        if(this.firstPlay) {
+            this.firstPlay = false;
+            document.getElementById('now-playing').style.visibility = 'visible';
+        }
+        if(this.audio.paused) {
+            this.audio.play();
+            document.getElementById('play-pause').textContent = 'Pause';
+        }
+        else {
+            this.audio.pause();
+            document.getElementById('play-pause').textContent = 'Play';
+        }
     },
 
-    setSongSource: function(filename) {
-        $('#audio').append(renderTemplate('source', {filename: filename}));
+    setSongSource: function(name, filename) {
+        var audioPlayer = $('#audio');
+        audioPlayer.empty();
+        audioPlayer.append(renderTemplate('source', {filename: filename}));
+        document.getElementById('now-playing').textContent = name;
     }
 });

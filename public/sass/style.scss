@@ -70,6 +70,10 @@ html, body {
   margin: 50px auto;
 }
 
+#now-playing {
+  visibility: hidden;
+}
+
 #audio-controls ul {
   list-style: none;
 }

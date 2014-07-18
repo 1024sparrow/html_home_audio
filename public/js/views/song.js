@@ -3,8 +3,8 @@ var app = app || {};
 app.SongView = Backbone.View.extend({
     el: '#main-section',
 
-    render: function(data) {
-        this.$el.html(renderTemplate('songs', data));
+    render: function() {
+        this.$el.html(renderTemplate('audio', {}));
     },
 
     events: {
@@ -16,23 +16,26 @@ app.SongView = Backbone.View.extend({
     initialize: function(options) {
         this.currentSong = 1;
         this.firstPlay = true;
+        this.bind('songEnded', this.songEnded);
+        this.render();
         this.collection = new app.SongList(options);
         var self = this;
+        this.audio = document.getElementById('audio');
+        this.audio.addEventListener('ended', function() { self.trigger('songEnded'); });
         this.collection.fetch({success: function(collection, response, options) {
             var songs = [];
             collection.sorted().forEach(function(item) {
                 songs.push({name: item.get('name'), number: item.get('number'), filename: item.get('filename')});
             });
-            self.render({
+            $('#song-list').html(renderTemplate('songs', {
                 artist: collection.artist,
                 tag: collection.tag,
                 album: collection.album,
                 songs: songs
-            });
+            }));
+            self.albumLength = collection.models.length;
             var track = collection.getSongInfo(self.currentSong);
             self.setSongSource(track.name, track.filename);
-            self.audio = document.getElementById('audio');
-            self.audio.addEventListener('ended', self.nextSong); // change rendering and move this out of the fetch
         }});
     },
 
@@ -51,12 +54,12 @@ app.SongView = Backbone.View.extend({
             }
         }
         else {
-            // seek back to start of the song
+            this.audio.currentTime = 0;
         }
     },
 
     nextSong: function() {
-        if(this.currentSong == this.collection.models.length) {
+        if(this.currentSong == this.albumLength) {
             this.currentSong = 1;
             this.audio.pause();
         }
@@ -77,6 +80,7 @@ app.SongView = Backbone.View.extend({
         if(this.firstPlay) {
             this.firstPlay = false;
             document.getElementById('now-playing').style.visibility = 'visible';
+
         }
         if(this.audio.paused) {
             this.audio.play();
@@ -86,6 +90,21 @@ app.SongView = Backbone.View.extend({
             this.audio.pause();
             document.getElementById('play-pause').textContent = 'Play';
         }
+    },
+
+    songEnded: function() {
+        if(this.currentSong == this.albumLength) {
+            this.currentSong = 1;
+            var track = this.collection.getSongInfo(this.currentSong);
+            this.setSongSource(track.name, track.filename);
+        }
+        else {
+            this.currentSong++;
+            var track = this.collection.getSongInfo(this.currentSong);
+            this.setSongSource(track.name, track.filename);
+            this.audio.play();
+        }
+
     },
 
     setSongSource: function(name, filename) {

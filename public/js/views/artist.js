@@ -1,7 +1,6 @@
 var app = app || {};
 
 app.ArtistView = Backbone.View.extend({
-    el: '#main-section',
 
     render: function(artistList) {
         this.$el.html(renderTemplate('artists', {artists: artistList}));

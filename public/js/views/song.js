@@ -1,7 +1,6 @@
 var app = app || {};
 
 app.SongView = Backbone.View.extend({
-    el: '#main-section',
 
     render: function() {
         this.$el.html(renderTemplate('audio', {}));
@@ -16,12 +15,9 @@ app.SongView = Backbone.View.extend({
     initialize: function(options) {
         this.currentSong = 1;
         this.firstPlay = true;
-        this.bind('songEnded', this.songEnded);
         this.render();
         this.collection = new app.SongList(options);
         var self = this;
-        this.audio = document.getElementById('audio');
-        this.audio.addEventListener('ended', function() { self.trigger('songEnded'); });
         this.collection.fetch({success: function(collection, response, options) {
             var songs = [];
             collection.sorted().forEach(function(item) {
@@ -34,8 +30,10 @@ app.SongView = Backbone.View.extend({
                 songs: songs
             }));
             self.albumLength = collection.models.length;
+            self.audio = document.getElementById('audio');
             var track = collection.getSongInfo(self.currentSong);
             self.setSongSource(track.name, track.filename);
+            $('#audio').on('ended', function() { self.songEnded(); });
         }});
     },
 
@@ -112,5 +110,10 @@ app.SongView = Backbone.View.extend({
         audioPlayer.empty();
         audioPlayer.append(renderTemplate('source', {filename: filename}));
         document.getElementById('now-playing').textContent = name;
+    },
+
+    remove: function() {
+        $('#audio').off('ended', this.songEnded);
+        Backbone.View.prototype.remove.apply(this, arguments);
     }
 });

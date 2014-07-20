@@ -31,15 +31,15 @@ app.AppView = Backbone.View.extend({
     },
 
     artistsPage: function(){
-        this.main = new app.ArtistView();
+        this.createSubView(new app.ArtistView());
     },
 
     albumsPage: function(artistName){
-        this.main = new app.AlbumView({name: artistName});
+        this.createSubView(new app.AlbumView({name: artistName}));
     },
 
     songsPage: function(artist, album) {
-        this.main = new app.SongView({artist: artist, album: album});
+        this.createSubView(new app.SongView({artist: artist, album: album}));
     },
 
     genresPage: function(){
@@ -47,11 +47,19 @@ app.AppView = Backbone.View.extend({
     },
 
     uploadPage: function(){
-        this.main = new app.UploadView();
+        this.createSubView(new app.UploadView());
     },
 
     mainPage: function(){
         this.$mainSection.html(this.welcomeTmpl);
+    },
+
+    createSubView: function(view) {
+        if(this.currentView) {
+            this.currentView.remove();
+        }
+        this.currentView = view;
+        $('#main-section').html(this.currentView.el);
     }
 
 });

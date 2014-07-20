@@ -1,7 +1,6 @@
 var app = app || {};
 
 app.UploadView = Backbone.View.extend({
-    el: '#main-section',
 
     render: function(genreList) {
         this.$el.html(renderTemplate('upload', {genres: genreList}));

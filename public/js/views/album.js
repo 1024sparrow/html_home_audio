@@ -1,7 +1,6 @@
 var app = app || {};
 
 app.AlbumView = Backbone.View.extend({
-    el: '#main-section',
 
     render: function(artist, tag, genre, albumList) {
         this.$el.html(renderTemplate('albums', {artist: artist, tag: tag, genre: genre, albums: albumList}));

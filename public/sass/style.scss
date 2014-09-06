@@ -1,7 +1,10 @@
 $title-color: rgba(23,112,0,1);
+$secondary-color: rgba(24, 112, 0, 0.59);
 $primary-text: #ffffff;
 $title-height: 75px;
 $main-background: #c7bbbb;
+$standout-font: 'Indie Flower', sans-serif;
+
 
 html, body {
   padding: 0;
@@ -21,6 +24,7 @@ html, body {
 }
 
 .logo {
+  font-family: $standout-font;
   font-size: 24px;
   font-weight: bold;
   color: $primary-text;
@@ -62,12 +66,81 @@ html, body {
 }
 
 .welcome {
-  font-family: 'Dosis', sans-serif;
+  font-family: $standout-font;
 }
 
 #main-section {
   width: 75%;
   margin: 50px auto;
+}
+
+#upload ul {
+  list-style: none;
+}
+
+#upload li {
+  padding: 10px;
+}
+
+#upload label {
+  width: 100px;
+}
+
+#upload input[type=text] {
+  width: 200px;
+  height: 20px;
+  margin: 5px 100px;
+  transition: padding 0.25s;
+}
+
+#upload input[type=text]:focus {
+  padding-right: 70px;
+}
+
+#upload select {
+  background-color: $title-color;
+  color: $primary-text;
+  width: 200px;
+  height: 20px;
+  margin: 5px 100px;
+  border: 1px solid $title-color;
+  border-radius: 3px;
+}
+
+#upload input[type=button],input[type=submit] {
+  background-color: $title-color;
+  color: $primary-text;
+  padding: 5px 20px;
+  border: 1px solid $title-color;
+  border-radius: 3px;
+}
+
+#upload input[type=submit] {
+  float: right;
+}
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px 20px;
+  display: inline-block;
+  background-color: $secondary-color;
+  color: $primary-text;
+  border-radius: 3px;
+  width: 80px;
+  text-align: center;
+}
+
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
 }
 
 #now-playing {

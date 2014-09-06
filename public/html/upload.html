@@ -1,27 +1,40 @@
-<div id="form-container">
+<div id="upload">
     <form enctype="multipart/form-data" action="/upload" method="post">
-        <p>Artist:</p>
-        <input type="text" name="name"/><br>
-        <p>Genre:</p>
-        <select name="genre">
-            {{#each genres}}
-            <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select><br>
-        <p>Album:</p>
-        <input type="text" name="album"/><br>
-        <br>
-        <input type="button" onclick="addFile()" value="Add Track"/>
-        <div id="files"></div>
-        <input type="submit" value="Upload"/>
+        <ul>
+            <li><label for="name">Name: </label>
+                <input type="text" name="name" required/>
+            </li>
+            <li>
+                <label for="genre">Genre: </label>
+                <select name="genre" required>
+                    <option selected="selected">-- Please select a genre --</option>
+                    {{#each genres}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </li>
+            <li>
+                <label for="album">Album: </label>
+                <input type="text" name="album" required/>
+            </li>
+            <li>
+                <input type="button" onclick="addFile()" value="Add Track"/>
+            </li>
+            <li>
+                <div id="files"></div>
+            </li>
+            <li>
+                <input type="submit" value="Upload"/>
+            </li>
+        </ul>
     </form>
 </div>
 <script type="text/javascript">
     var filesCount = 0;
     function addFile() {
-        console.log('addFile');
         filesCount++;
-        var file = '<p>Track ' + filesCount + ': </p><input type="file" name="' + filesCount + '"/>';
+        var file = '<div class="fileUpload"><span>Track ' + filesCount + '</span><input type="file" name="' +
+                filesCount + '" class="upload" required/></div>';
         $('#files').append(file);
     }
 </script>

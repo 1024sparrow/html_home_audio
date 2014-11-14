@@ -3,7 +3,7 @@ var Q = require('q');  // Promise library
 
 // wrap callback style functions to return a promise
 var findArtist = Q.denodeify(Artist.find);
-var findOneArtist = Q.denodify(Artist.findOne);
+var findOneArtist = Q.denodeify(Artist.findOne);
 
 module.exports = function(app) {
 

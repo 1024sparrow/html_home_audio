@@ -2,11 +2,13 @@
   "name": "html-home-audio",
   "main": "server.js",
   "dependencies": {
-    "express": "~4.0.0",
     "body-parser": "~1.0.0",
+    "express": "~4.0.0",
     "method-override": "~1.0.0",
-    "mongoose" : "3.8.12",
+    "mongoose": "3.8.12",
+    "mongoose-q": "0.0.13",
     "multer": "0.1.0",
-    "q": "1.1.1"
+    "q": "1.1.1",
+    "mongoose-q": "0.0.13"
   }
 }

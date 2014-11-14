@@ -1,11 +1,14 @@
 var Artist =  require('../data/models/artist');
-var Q = require('q');  // Promise library
+var mongoose = require('mongoose-q')(require('mongoose'));  // Promises for mongoose
 
 module.exports = function(app) {
 
     app.get('/artists', function(req, res) {
-        var promise = Q.nfcall(Artist.find, {sort: {name: 1}});
-        promise.then(processArtists, processError);
+        Artists.find({}).sort({name: 1})
+          .execQ()
+          .then(processArtists(result))
+          .catch(processError(err))
+          .done();
         /*Artist.find({}, function(err, artists) {
             if(err) {
                 console.log(err);

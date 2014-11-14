@@ -1,14 +1,10 @@
 var Artist =  require('../data/models/artist');
 var Q = require('q');  // Promise library
 
-// wrap callback style functions to return a promise
-var findArtist = Q.denodeify(Artist.find);
-var findOneArtist = Q.denodeify(Artist.findOne);
-
 module.exports = function(app) {
 
     app.get('/artists', function(req, res) {
-        var promise = findArtist({sort: {name: 1}});
+        var promise = Q.nfcall(Artist.find, {sort: {name: 1}});
         promise.then(processArtists, processError);
         /*Artist.find({}, function(err, artists) {
             if(err) {
@@ -28,7 +24,7 @@ module.exports = function(app) {
     });
 
     app.get('/artists/:artist', function(req, res) {
-        var promise = findOneArtist({tag: req.params.artist});
+        var promise = Q.nfcall(Artist.findOne, {tag: req.params.artist});
         promise.then(processAlbums, processError);
         /*Artist.findOne({tag: req.params.artist}, function(err, artist) {
             if(err) {
@@ -49,7 +45,7 @@ module.exports = function(app) {
     });
 
     app.get('/artists/:artist/:album', function(req, res) {
-        var promise = findOneArtist({tag: req.param.artist});
+        var promise = Q.nfcall(Artist.findOne, {tag: req.param.artist});
         promise.then(processSongs, processError);
         /*Artist.findOne({tag: req.params.artist}, function(err, artist) {
             if(err) {
